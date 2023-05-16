@@ -5,13 +5,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const compareObjects = (obj1, obj2) => {
-  const keys = _.sortBy(_.union(_.keys(obj1), _.keys(obj2)));
-  const keyDiffs = keys.map((key) => {
+  const unionKeys = _.union(_.keys(obj1), _.keys(obj2));
+  const sortUnionKeys = _.sortBy(unionKeys);
+  const keyDiffs = sortUnionKeys.map((key) => {
     if (
-      _.has(obj1, key)
-      && _.has(obj2, key)
-      && !_.isEqual(obj1[key], obj2[key])
-    ) {
+      _.has(obj1, key) && _.has(obj2, key) && !_.isEqual(obj1[key], obj2[key])) {
       return [
         `  - ${key}: ${obj1[key]}`,
         `  + ${key}: ${obj2[key]}`,
