@@ -1,9 +1,15 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/EgorKurilko/fullstack-javascript-project-46/workflows/hexlet-check/badge.svg)](https://github.com/EgorKurilko/fullstack-javascript-project-46/actions)
 
-#### Starting the game
+### Maintainability Badge
+[![Maintainability](https://api.codeclimate.com/v1/badges/b2c7423580bd84f0f825/maintainability)](https://codeclimate.com/github/EgorKurilko/fullstack-javascript-project-46/maintainability)
 
-`Flat file comparison`
+### Test Coverage Badge
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b2c7423580bd84f0f825/test_coverage)](https://codeclimate.com/github/EgorKurilko/fullstack-javascript-project-46/test_coverage)
+
+#### Starting comparison
+
+`Flat files comparison`
 
 #### Presents
 
