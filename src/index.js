@@ -30,8 +30,11 @@ const compareObjects = (obj1, obj2) => {
 };
 
 const genDiff = (filepath1, filepath2) => {
+  // преобразуем путь в абсолютный при помощи path.resolve()
   const absPath1 = path.resolve(filepath1);
+  // возвращаем содержимое пути в виде строки
   const text1 = fs.readFileSync(absPath1);
+  // разбираем строчные данные в собственные, т.е. "{}" в {}, "true" в true
   const obj1 = JSON.parse(text1);
 
   const absPath2 = path.resolve(filepath2);
