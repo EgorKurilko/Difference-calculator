@@ -4,13 +4,13 @@ import formatToPlain from './plain.js';
 
 import formatToJson from './json.js';
 
-export default (tree, format = stylish) => {
+export default (tree, format = formatToStylish) => {
   switch (format) {
-    case 'stylish':
+    case 'formatToStylish':
       return formatToStylish(tree);
-    case 'plain':
+    case 'formatToPlain':
       return formatToPlain(tree);
-    case 'json':
+    case 'formatToJson':
       return formatToJson(tree);
     default:
       throw new Error(`Unknown format: ${format}`);
