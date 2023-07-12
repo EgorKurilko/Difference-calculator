@@ -10,7 +10,7 @@ import format from './formatters/index.js';
 
 export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath)).toString();
 
-const genDiff = (filepath1, filepath2, outputFormat = 'formatToStylish') => {
+const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
   const format1 = path.extname(filepath1).slice(1);
   const format2 = path.extname(filepath2).slice(1);
   const text1 = readFile(filepath1);

@@ -11,7 +11,7 @@ const stringify = (value) => {
   return `${value}`;
 };
 
-const formatToPlain = (tree) => {
+const plain = (tree) => {
   const format = (nodes, parent) => nodes
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
@@ -31,4 +31,4 @@ const formatToPlain = (tree) => {
     }).join('\n');
   return format(tree, 0);
 };
-export default formatToPlain;
+export default plain;
