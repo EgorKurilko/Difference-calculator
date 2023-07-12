@@ -9,9 +9,9 @@ program
   .version('0.0.1')
   .argument('<filepath1>', 'first file')
   .argument('<filepath2>', 'second file')
-  .option('-f, --format [type]', 'output format')
-  .action((filepath1, filepath2) => {
-    console.log(genDiff(filepath1, filepath2));
+  .option('-f, --format <type>', 'output format', 'stylish')
+  .action((filepath1, filepath2, options) => {
+    console.log(genDiff(filepath1, filepath2, options.format));
   });
 
 program.parse(process.argv);
