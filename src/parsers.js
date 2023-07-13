@@ -4,7 +4,7 @@ const parse = (text, format) => {
   switch (format) {
     case 'json':
       return JSON.parse(text);
-    case 'yml':  
+    case 'yml':
     case 'yaml':
       return yaml.load(text);
     default:

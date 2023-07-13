@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 const stringify = (value) => {
   if (typeof value === 'object' && value !== null) {
     return '[complex value]';
