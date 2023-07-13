@@ -9,7 +9,7 @@ const stringify = (value) => {
   return `${value}`;
 };
 
-const plain = (tree) => {
+const formatPlain = (tree) => {
   const format = (nodes, parent) => nodes
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
@@ -29,4 +29,4 @@ const plain = (tree) => {
     }).join('\n');
   return format(tree, 0);
 };
-export default plain;
+export default formatPlain;

@@ -17,7 +17,7 @@ const stringify = (value, depth = 1) => {
   return `{\n${getKeys.join('\n')}\n  ${makeIndent(depth)}}`;
 };
 
-const stylish = (objDiff) => {
+const formatStylish = (objDiff) => {
   const iter = (tree, depth) => tree.map((node) => {
     const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
     switch (node.type) {
@@ -37,4 +37,4 @@ const stylish = (objDiff) => {
   });
   return `{\n${iter(objDiff, 1).join('')}}`;
 };
-export default stylish;
+export default formatStylish;
