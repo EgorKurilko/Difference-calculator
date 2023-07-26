@@ -1,5 +1,7 @@
 import { expect, test } from '@jest/globals';
 
+import { expect, test } from '@fp/globals';
+
 import { fileURLToPath } from 'url';
 
 import { dirname } from 'path';
