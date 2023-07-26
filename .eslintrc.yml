@@ -1,11 +1,12 @@
 env:
-  browser: true
   node: true
-  es2021: true
+plugins:
+  - jest
+  - fp
 extends:
-  - airbnb-base
-  - "plugin:jest/recommended"
-  - "plugin:fp/recommended"
+  - 'airbnb-base'
+  - 'plugin:jest/recommended'
+  - 'plugin:fp/recommended'
 overrides: []
 parserOptions:
   ecmaVersion: latest
