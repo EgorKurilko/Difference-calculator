@@ -10,13 +10,14 @@ import format from './formatters/index.js';
 
 export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath)).toString();
 
+const getFormat = (filepath) => path.extname(filepath).slice(1);
+
+const getObj = (filepath) => parse(readFile(filepath), getFormat(filepath));
+
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
-  const format1 = path.extname(filepath1).slice(1);
-  const format2 = path.extname(filepath2).slice(1);
-  const text1 = readFile(filepath1);
-  const obj1 = parse(text1, format1);
-  const text2 = readFile(filepath2);
-  const obj2 = parse(text2, format2);
+
+  const obj1 = getObj(filepath1);
+  const obj2 = getObj(filepath2);
 
   const tree = makeTree(obj1, obj2);
   return format(tree, outputFormat);

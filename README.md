@@ -27,25 +27,25 @@ make test
 
 ### Flat json files comparison
 
-#### Presents
+#### Recording demonstration
 [![Flat json files comparison](https://asciinema.org/a/Ho8Mab6ZnVJFWh1BVBAMzJvcl.svg)](https://asciinema.org/a/Ho8Mab6ZnVJFWh1BVBAMzJvcl)
 
 ### Flat yaml files comparison
 
-#### Presents
+#### Recording demonstration
 [![Flat yaml files comparison](https://asciinema.org/a/OFjpVgFtlSUwOkcB3X67WG78A.svg)](https://asciinema.org/a/OFjpVgFtlSUwOkcB3X67WG78A)
 
 ### Recursive comparison
 
-#### Presents
+#### Recording demonstration
 [![Recursive comparison](https://asciinema.org/a/rvAgXbgFD3nxmHNMzAsz7Y5Le.svg)](https://asciinema.org/a/rvAgXbgFD3nxmHNMzAsz7Y5Le)
 
 ### Flat format
 
-#### Presents
+#### Recording demonstration
 [![Flat format](https://asciinema.org/a/hoqM8YuppeqT8OByVXCUvZNTx.svg)](https://asciinema.org/a/hoqM8YuppeqT8OByVXCUvZNTx)
 
 ### Output to json
 
-#### Presents
+#### Recording demonstration
 [![Output to json](https://asciinema.org/a/1Bh31TBwEQ2BfvjAB05O61OOC.svg)](https://asciinema.org/a/1Bh31TBwEQ2BfvjAB05O61OOC)

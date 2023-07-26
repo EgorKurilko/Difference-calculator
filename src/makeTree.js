@@ -3,7 +3,7 @@ import _ from 'lodash';
 const makeTree = (obj1, obj2) => {
   const unionKeys = _.union(_.keys(obj1), _.keys(obj2));
   const sortUnionKeys = _.sortBy(unionKeys);
-  const getKeysDiff = sortUnionKeys.map((key) => {
+  const keysDiff = sortUnionKeys.map((key) => {
     if (!_.has(obj2, key)) {
       return { key, type: 'deleted', value1: obj1[key] };
     }
@@ -20,6 +20,6 @@ const makeTree = (obj1, obj2) => {
     }
     return { key, type: 'unchanged', value1: obj1[key] };
   });
-  return getKeysDiff;
+  return keysDiff;
 };
 export default makeTree;
