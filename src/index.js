@@ -8,7 +8,7 @@ import makeTree from './makeTree.js';
 
 import format from './formatters/index.js';
 
-export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath));
+export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath)).toString();
 
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 
