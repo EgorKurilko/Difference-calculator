@@ -8,16 +8,16 @@ import makeTree from './makeTree.js';
 
 import format from './formatters/index.js';
 
-export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath)).toString();
+export const readFile = (filepath) => fs.readFileSync(path.resolve(filepath));
 
 const getFormat = (filepath) => path.extname(filepath).slice(1);
 
-const getObj = (filepath) => parse(readFile(filepath), getFormat(filepath));
+const getData = (filepath) => parse(readFile(filepath), getFormat(filepath));
 
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
-  const obj1 = getObj(filepath1);
-  const obj2 = getObj(filepath2);
-  const tree = makeTree(obj1, obj2);
+  const data1 = getData(filepath1);
+  const data2 = getData(filepath2);
+  const tree = makeTree(data1, data2);
   return format(tree, outputFormat);
 };
 export default genDiff;

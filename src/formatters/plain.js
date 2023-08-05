@@ -3,9 +3,7 @@ const stringify = (value) => {
     return '[complex value]';
   } if (typeof value === 'string') {
     return `'${value}'`;
-  } if (value === null) {
-    return null;
-  }
+  } 
   return `${value}`;
 };
 
@@ -27,6 +25,6 @@ const formatPlain = (tree) => {
           throw new Error(`This type does not exist: ${node.type}`);
       }
     }).join('\n');
-  return format(tree, 0);
+  return format(tree, null);
 };
 export default formatPlain;

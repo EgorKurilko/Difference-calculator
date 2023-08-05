@@ -1,10 +1,10 @@
-import { expect, test } from '@jest/globals';
-
 import { fileURLToPath } from 'url';
 
 import { dirname } from 'path';
 
 import path from 'node:path';
+
+import { expect, test } from '@jest/globals';
 
 import genDiff, { readFile } from '../src/index.js';
 
