@@ -2,11 +2,15 @@ import { fileURLToPath } from 'url';
 
 import { dirname } from 'path';
 
+import fs from 'node:fs';
+
 import path from 'node:path';
 
 import { expect, test } from '@jest/globals';
 
-import genDiff, { readFile } from '../src/index.js';
+import genDiff from '../src/index.js';
+
+const readFile = (filepath) => fs.readFileSync(path.resolve(filepath), 'utf-8');
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,8 +23,10 @@ const expectedResultJson = readFile(getFixturePath('expectedResultJson.txt'));
 const formatsFiles = ['json', 'yaml'];
 
 test.each(formatsFiles)('diff formats of files (.json .yaml)', (extension) => {
-  const fileName1 = `${process.cwd()}/__fixtures__/file1.${extension}`;
-  const fileName2 = `${process.cwd()}/__fixtures__/file2.${extension}`;
+  // const fileName1 = `${process.cwd()}/__fixtures__/file1.${extension}`;
+  // const fileName2 = `${process.cwd()}/__fixtures__/file2.${extension}`;
+  const fileName1 = getFixturePath('file1.json');
+  const fileName2 = getFixturePath('file2.json');
 
   expect(genDiff(fileName1, fileName2, 'stylish')).toEqual(expectedResultStylish);
   expect(genDiff(fileName1, fileName2, 'plain')).toEqual(expectedResultPlain);
