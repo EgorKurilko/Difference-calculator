@@ -23,8 +23,6 @@ const expectedResultJson = readFile(getFixturePath('expectedResultJson.txt'));
 const formatsFiles = ['json', 'yaml'];
 
 test.each(formatsFiles)('diff formats of files (.json .yaml)', (extension) => {
-  // const fileName1 = `${process.cwd()}/__fixtures__/file1.${extension}`;
-  // const fileName2 = `${process.cwd()}/__fixtures__/file2.${extension}`;
   const fileName1 = getFixturePath(`file1.${extension}`);
   const fileName2 = getFixturePath(`file2.${extension}`);
 
