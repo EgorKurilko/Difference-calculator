@@ -6,13 +6,15 @@ const stringify = (value) => {
   }
   return `${value}`;
 };
-
+// const lastNames = users.map((user) => {mapping[user.gender](user)});
 const formatPlain = (tree) => {
   const format = (nodes, parent) => nodes
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
       const property = parent ? `${parent}.${node.key}` : node.key;
-      switch (node.type) {
+      return mapping[node.type](property, node, format);
+
+      /* switch (node.type) {
         case 'added':
           return `Property '${property}' was added with value: ${stringify(node.value2)}`;
         case 'deleted':
@@ -23,8 +25,15 @@ const formatPlain = (tree) => {
           return `${format(node.children, property)}`;
         default:
           throw new Error(`This type does not exist: ${node.type}`);
-      }
+      } */
     }).join('\n');
   return format(tree, null);
 };
 export default formatPlain;
+
+const mapping = {
+  added: (property, node) => `Property '${property}' was added with value: ${stringify(node.value2)}`,
+  deleted: (property) => `Property '${property}' was removed`,
+  changed: (property, node) => `Property '${property}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`,
+  nested: (property, node, format) => `${format(node.children, property)}`,
+};

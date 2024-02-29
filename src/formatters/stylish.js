@@ -20,7 +20,8 @@ const stringify = (value, depth = 1) => {
 const formatStylish = (objDiff) => {
   const iter = (tree, depth) => tree.map((node) => {
     const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
-    switch (node.type) {
+    return mapping[node.type](node, depth, makeIndent, iter);
+    /* switch (node.type) {
       case 'added':
         return getValue(node.value2, '+');
       case 'deleted':
@@ -33,7 +34,15 @@ const formatStylish = (objDiff) => {
         return `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`;
       default:
         throw new Error(`This type does not exist: ${node.type}`);
-    }
+    } */
+    const mapping = {
+      added: (node) => getValue(node.value2, '+'),
+      deleted: (node) => getValue(node.value1, '-'),
+      unchanged: (node) => getValue(node.value1, ' '),
+      changed: (node) => `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`,
+      nested: (depth, node) => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
+    };
+
   });
   return `{\n${iter(objDiff, 1).join('')}}`;
 };
