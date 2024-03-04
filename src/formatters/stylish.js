@@ -19,6 +19,10 @@ const stringify = (value, depth = 1) => {
 
 const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
 
+const iter = (tree, depth) => tree.map((node) => {
+  return mapping[node.type](node, depth, makeIndent, iter);
+});
+
 const mapping = {
   added: (node) => getValue(node.value2, '+'),
   deleted: (node) => getValue(node.value1, '-'),
@@ -27,9 +31,6 @@ const mapping = {
   nested: (depth, node) => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
 };
 const formatStylish = (objDiff) => {
-  const iter = (tree, depth) => tree.map((node) => {
-    return mapping[node.type](node, depth, makeIndent, iter);
-  });
   return `{\n${iter(objDiff, 1).join('')}}`;
 };
 export default formatStylish;
