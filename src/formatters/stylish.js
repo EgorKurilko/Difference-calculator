@@ -20,11 +20,11 @@ const stringify = (value, depth = 1) => {
 const iter = (tree, depth) => tree.map((node) => {
   const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
   const mapping = {
-    added: (node) => getValue(node.value2, '+'),
-    deleted: (node) => getValue(node.value1, '-'),
-    unchanged: (node) => getValue(node.value1, ' '),
-    changed: (node) => `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`,
-    nested: (depth, node) => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
+    added: () => getValue(node.value2, '+'),
+    deleted: () => getValue(node.value1, '-'),
+    unchanged: () => getValue(node.value1, ' '),
+    changed: () => `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`,
+    nested: () => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
   };
   return mapping[node.type](node, depth, makeIndent, iter);
 });
