@@ -6,7 +6,7 @@ const stringify = (value) => {
   }
   return `${value}`;
 };
-// const lastNames = users.map((user) => {mapping[user.gender](user)});
+
 const mapping = {
   added: (property, node) => `Property '${property}' was added with value: ${stringify(node.value2)}`,
   deleted: (property) => `Property '${property}' was removed`,
