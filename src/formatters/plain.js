@@ -12,28 +12,14 @@ const formatPlain = (tree) => {
     .filter((node) => node.type !== 'unchanged')
     .map((node) => {
       const property = parent ? `${parent}.${node.key}` : node.key;
+      const mapping = {
+        added: (property, node) => `Property '${property}' was added with value: ${stringify(node.value2)}`,
+        deleted: (property) => `Property '${property}' was removed`,
+        changed: (property, node) => `Property '${property}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`,
+        nested: (property, node, format) => `${format(node.children, property)}`,
+      };
       return mapping[node.type](property, node, format);
-
-      /* switch (node.type) {
-        case 'added':
-          return `Property '${property}' was added with value: ${stringify(node.value2)}`;
-        case 'deleted':
-          return `Property '${property}' was removed`;
-        case 'changed':
-          return `Property '${property}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`;
-        case 'nested':
-          return `${format(node.children, property)}`;
-        default:
-          throw new Error(`This type does not exist: ${node.type}`);
-      } */
     }).join('\n');
   return format(tree, null);
 };
 export default formatPlain;
-
-const mapping = {
-  added: (property, node) => `Property '${property}' was added with value: ${stringify(node.value2)}`,
-  deleted: (property) => `Property '${property}' was removed`,
-  changed: (property, node) => `Property '${property}' was updated. From ${stringify(node.value1)} to ${stringify(node.value2)}`,
-  nested: (property, node, format) => `${format(node.children, property)}`,
-};
