@@ -17,9 +17,8 @@ const stringify = (value, depth = 1) => {
   return `{\n${getKeys.join('\n')}\n  ${makeIndent(depth)}}`;
 };
 
-const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
-
 const iter = (tree, depth) => tree.map((node) => {
+  const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
   const mapping = {
     added: (node) => getValue(node.value2, '+'),
     deleted: (node) => getValue(node.value1, '-'),
