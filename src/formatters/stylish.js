@@ -17,16 +17,17 @@ const stringify = (value, depth = 1) => {
   return `{\n${getKeys.join('\n')}\n  ${makeIndent(depth)}}`;
 };
 
+const mapping = {
+  added: (node, getValue) => getValue(node.value2, '+'),
+  deleted: (node, getValue) => getValue(node.value1, '-'),
+  unchanged: (node, getValue) => getValue(node.value1, ' '),
+  changed: (node, getValue) => `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`,
+  nested: (node, getValue, depth, iter) => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
+};
 const iter = (tree, depth) => tree.map((node) => {
   const getValue = (item, sign) => `${makeIndent(depth)}${sign} ${node.key}: ${stringify(item, depth)}\n`;
-  const mapping = {
-    added: () => getValue(node.value2, '+'),
-    deleted: () => getValue(node.value1, '-'),
-    unchanged: () => getValue(node.value1, ' '),
-    changed: () => `${getValue(node.value1, '-')}${getValue(node.value2, '+')}`,
-    nested: () => `${makeIndent(depth)}  ${node.key}: {\n${iter(node.children, depth + 1).join('')}${makeIndent(depth)}  }\n`,
-  };
-  return mapping[node.type](node, depth, makeIndent, iter);
+
+  return mapping[node.type](node, getValue, depth, iter);
 });
 
 const formatStylish = (objDiff) => `{\n${iter(objDiff, 1).join('')}}`;
